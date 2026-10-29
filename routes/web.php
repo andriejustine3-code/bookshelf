@@ -1,12 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    // return view('welcome');
-    return view('welcome');
-});
-
-Route::get('/books', function () {
-    return view('welcome');
-});
+// use App\Http\Controllers\BookController;
+Route::redirect('/', '/books');
+Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books.index');
