@@ -10,6 +10,7 @@
                 <img src="{{ asset($book->cover) }}" alt="{{ $book->title }} cover" class="book-cover">
                 <h2>{{ $book->title }}</h2>
                 <p>Author: {{ $book->author }}</p>
+                <a href="{{ route('books.show', $book) }}" class="btn btn-primary">View Details</a>
             </div>
         @endforeach
     </div>
