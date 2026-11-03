@@ -16,4 +16,39 @@ class BookController extends Controller
     {
         return view('books.show', compact('book'));
     }
+
+    public function create()
+    {
+        return view('books.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:150'],
+            'author' => ['required', 'string', 'max:100'],
+            'genre' => ['required', 'string', 'max:50'],
+            'cover' => ['nullable', 'url', 'max:2048'],
+        ]);
+
+        $book = Book::create($validated);
+        return redirect()->route('books.show', $book);
+    }
+
+    public function edit(Book $book)
+    {
+        return view('books.edit', compact('book'));
+    }
+
+    public function update(Request $request, Book $book)
+    {
+        $book->update($request->all());
+        return redirect()->route('books.show', $book);
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect()->route('books.index');
+    }   
 }
