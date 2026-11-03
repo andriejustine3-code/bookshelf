@@ -8,5 +8,6 @@
         <img src="{{ asset($book->cover) }}" alt="{{ $book->title }} cover" class="book-cover">
         <p>{{ $book->description }}</p>
         <a href="{{ route('books.index') }}" class="btn btn-primary">Back to Books Collection</a>
+        <a href="{{ route('books.edit', $book) }}" class="btn btn-primary">Edit Book</a>
     </section>
 @endsection

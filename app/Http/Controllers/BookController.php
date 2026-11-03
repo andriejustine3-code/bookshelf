@@ -53,7 +53,7 @@ class BookController extends Controller
             'cover' => ['nullable', 'url', 'max:2048'],
         ]);
 
-        $book = Book::create($validated);
+        $book->update($validated);
         return redirect()
             ->route('books.index', $book)
             ->with('success', 'Book updated successfully.');
