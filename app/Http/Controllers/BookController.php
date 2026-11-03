@@ -32,7 +32,9 @@ class BookController extends Controller
         ]);
 
         $book = Book::create($validated);
-        return redirect()->route('books.show', $book);
+        return redirect()
+            ->route('books.index', $book)
+            ->with('success', 'Book created successfully.');
     }
 
     public function edit(Book $book)
