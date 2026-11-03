@@ -7,11 +7,13 @@ Route::redirect('/', '/books');
 //page for displaying all books
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books.index');
 
+// Page for creating a new book
+Route::get('/books/create', [App\Http\Controllers\BookController::class, 'create'])->name('books.create');
+
 //page for displaying a single book
 Route::get('/books/{book}', [App\Http\Controllers\BookController::class, 'show'])->name('books.show');
 
-// Page for creating a new book
-Route::get('/books/create', [App\Http\Controllers\BookController::class, 'create'])->name('books.create');
+
 
 // Page for storing a new book
 Route::post('/books', [App\Http\Controllers\BookController::class, 'store'])->name('books.store');
