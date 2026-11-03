@@ -37,20 +37,31 @@ class BookController extends Controller
             ->with('success', 'Book created successfully.');
     }
 
-    // public function edit(Book $book)
-    // {
-    //     return view('books.edit', compact('book'));
-    // }
+    public function edit(Book $book)
+    {
+        return view('books.edit', compact('book'));
+    }
 
-    // public function update(Request $request, Book $book)
-    // {
-    //     $book->update($request->all());
-    //     return redirect()->route('books.show', $book);
-    // }
+    public function update(Request $request, Book $book)
+    {
+        $book->update($request->all());
+        
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:150'],
+            'author' => ['required', 'string', 'max:100'],
+            'genre' => ['required', 'string', 'max:50'],
+            'cover' => ['nullable', 'url', 'max:2048'],
+        ]);
 
-    // public function destroy(Book $book)
-    // {
-    //     $book->delete();
-    //     return redirect()->route('books.index');
-    // }   
+        $book = Book::create($validated);
+        return redirect()
+            ->route('books.index', $book)
+            ->with('success', 'Book updated successfully.');
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect()->route('books.index');
+    }
 }
