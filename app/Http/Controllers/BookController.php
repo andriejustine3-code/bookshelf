@@ -37,20 +37,20 @@ class BookController extends Controller
             ->with('success', 'Book created successfully.');
     }
 
-    public function edit(Book $book)
-    {
-        return view('books.edit', compact('book'));
-    }
+    // public function edit(Book $book)
+    // {
+    //     return view('books.edit', compact('book'));
+    // }
 
-    public function update(Request $request, Book $book)
-    {
-        $book->update($request->all());
-        return redirect()->route('books.show', $book);
-    }
+    // public function update(Request $request, Book $book)
+    // {
+    //     $book->update($request->all());
+    //     return redirect()->route('books.show', $book);
+    // }
 
-    public function destroy(Book $book)
-    {
-        $book->delete();
-        return redirect()->route('books.index');
-    }   
+    // public function destroy(Book $book)
+    // {
+    //     $book->delete();
+    //     return redirect()->route('books.index');
+    // }   
 }
