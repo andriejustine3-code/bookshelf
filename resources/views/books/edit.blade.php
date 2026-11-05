@@ -1,9 +1,5 @@
 @extends('layouts.app')
 
-@section('button')
-    <a href="{{ route('books.index') }}" class="btn btn-secondary">Cancel</a>
-@endsection
-
 @section('content')
     <div class="container">
         <h1>Edit Book</h1>
@@ -29,6 +25,11 @@
             <label for="cover">Cover Image URL</label>
             <input type="url" class="form-control" id="cover" name="cover" value="{{ $book->cover }}">
             <button type="submit" class="btn btn-primary">Update Book</button>
+            <form action="{{ route('books.destroy', $book) }}" method="POST" class="delete-form">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</button>
+            </form>
         </form>
     </div>
 @endsection
