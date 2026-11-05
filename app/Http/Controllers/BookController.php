@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Relationship;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\Publisher;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::all();
+        $books = Book::with('publisher')->get();
         return view('books.index', compact('books'));
     }
 
@@ -19,7 +28,8 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('books.create');
+        $publishers = Publisher::all();
+        return view('books.create', compact('publishers'));
     }
 
     public function store(Request $request)
@@ -29,6 +39,7 @@ class BookController extends Controller
             'author' => ['required', 'string', 'max:100'],
             'genre' => ['required', 'string', 'max:50'],
             'cover' => ['nullable', 'url', 'max:2048'],
+            'publisher_id' => ['required', 'integer', 'exists:publishers,id'],
         ]);
 
         $book = Book::create($validated);
@@ -62,6 +73,6 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully.');
     }
 }

@@ -15,6 +15,7 @@
             <label for="cover">Cover Image URL</label>
             <input type="url" class="form-control" id="cover" name="cover" value="{{ $book->cover }}">
             <button type="submit" class="btn btn-primary">Update Book</button>
+            <a href="{{ route('books.index') }}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 @endsection

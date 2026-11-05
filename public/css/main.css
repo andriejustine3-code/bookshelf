@@ -22,14 +22,50 @@ body{
 }
 
 .btn{
-    background: #172033;
-    color: #f1f5f9;
-    padding: 10px 20px;
+    color: #172033;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    background: none;
+    border: none;
 }
+
+.btn-danger{
+    color: #f1f5f9;
+    background: #e21123;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary{
+    color: #f1f5f9;
+    background: #4e83f5;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-secondary{
+    color: #f1f5f9;
+    background: #172033;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.book-actions{
+    display: flex;
+    gap: 0.1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
 
 .book-card{
     display: flex;
@@ -137,7 +173,7 @@ header{
     border-radius: 0.8rem;
 }
 
-input{
+input, select, option{
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 0.8rem;
@@ -146,15 +182,6 @@ input{
     
 }
 
-button[type="submit"]{
-    background: #172033;
-    color: #f1f5f9;
-    border: none;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 .button{
     color: #172033;

@@ -18,6 +18,14 @@
             <p class="error">{{$message}}</p>
         @enderror
         
+        <label for="publisher_id">Book Publisher:</label>
+        <select name="publisher_id" id="publisher_id" required>
+            @foreach($publishers as $publisher)
+                <option value="{{ $publisher->id }}" {{ old('publisher_id') == $publisher->id ? 'selected' : '' }}>
+                    {{ $publisher->name }}
+                </option>
+            @endforeach
+        </select><br>
 
         <label for="genre">Book Genre:</label>
         <input type="text" name="genre" id="genre" required maxlength="50" value="{{ old('genre') }}" placeholder="e.g., Fiction, Non-Fiction"><br>
