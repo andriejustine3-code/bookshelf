@@ -9,6 +9,7 @@
 <body>
     <header class="container site-header">
         <a href="{{ route('books.index') }}" class="site-title">Bookshelf</a>
+        <div>@yield('button')</div>
     </header>
     <div class="container">
         @yield('content')
