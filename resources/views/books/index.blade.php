@@ -41,7 +41,8 @@
     </section>
     @if($books->total() > 0)
         <p>
-            Showing {{ $books->firstItem() }} - {{ $books->lastItem() }} of {{ $books->total() }} books
+            Showing {{ $books->firstItem() }} - {{ $books->lastItem() }} 
+            of {{ $books->total() }} books
         </p>
     @endif
     @if($books->hasPages())
