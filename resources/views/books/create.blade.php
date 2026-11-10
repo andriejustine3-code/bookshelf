@@ -3,7 +3,7 @@
 @section('content')
     <h1 class='addTitle'>Add a New Book</h1>
     <p class='addSubtitle'>Fill out the form below to add a new book to the collection.</p>
-    <form class="form" action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form" action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" enctype="multipart/form-data">
         @csrf
         <label for="title">Book Title:</label>
         <input type="text" name="title" id="title" required maxlength="150" value="{{ old('title') }}" placeholder="e.g., To Kill a Mockingbird"><br>
@@ -34,7 +34,7 @@
             <p class="error">{{$message}}</p>
         @enderror
         <label for="cover">Book Cover:</label>
-        <input type="url" name="cover" id="cover" value="{{ old('cover') }}" placeholder='https://example.com/cover.jpg'><br>
+        <input accept="image/jpeg,image/png,image/webp" type="file" name="cover"><br>
         {{-- FIX: Not showing --}}
         @error('cover')
             <p class="error">{{$message}}</p>

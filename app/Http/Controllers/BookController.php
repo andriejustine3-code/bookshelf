@@ -62,9 +62,14 @@ class BookController extends Controller
             'title' => ['required', 'string', 'max:150'],
             'author' => ['required', 'string', 'max:100'],
             'genre' => ['required', 'string', 'max:50'],
-            'cover' => ['nullable', 'url', 'max:2048'],
+            'cover' => ['nullable', 'image','mimes:jpg, jpeg, png, webp', 'max:2048'],
         ]);
 
+        if($request->hasFile('cover')){
+            $cover = $request->file('cover')->store('covers', 'public');
+        }
+
+        $validated['cover'] = $cover;
         $book->update($validated);
         return redirect()
             ->route('books.index', $book)
