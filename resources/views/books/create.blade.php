@@ -34,7 +34,7 @@
             <p class="error">{{$message}}</p>
         @enderror
         <label for="cover">Book Cover:</label>
-        <input accept="image/jpeg,image/png,image/webp" type="file" name="cover"><br>
+        <input accept="image/jpeg,image/png,image/webp" type="file" name="cover" id="cover"><br>
         {{-- FIX: Not showing --}}
         @error('cover')
             <p class="error">{{$message}}</p>

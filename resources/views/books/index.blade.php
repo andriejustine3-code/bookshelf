@@ -20,7 +20,7 @@
             @foreach ($books as $book)
                 <div class="book-card">
                     <span class="tag">{{$book->genre}}</span>
-                    <img src="{{ asset($book->cover) }}" alt="{{ $book->title }} cover" class="book-cover">
+                    <img src="{{ str_starts_with($book->cover, 'http') ? $book->cover : Storage::url($book->cover) }}" alt="{{ $book->title }} cover" class="book-cover">
                     <h2>{{ $book->title }}</h2>
                     <p>Author: {{ $book->author }}</p>
                     <p>Published By: {{$book->publisher?->name ?? 'Unknown'}}</p>
@@ -39,4 +39,21 @@
             @endforeach
         </div>
     </section>
+    @if($books->total() > 0)
+        <p>
+            Showing {{ $books->firstItem() }} - {{ $books->lastItem() }} of {{ $books->total() }} books
+        </p>
+    @endif
+    @if($books->hasPages())
+        <nav class="pagination">
+            @if($books->onFirstPage())
+                <span class="page-disabled">Previous</span>
+            @else
+                <a class="button" href="{{ $books->previousPageUrl() }}">Previous</a>
+            @if($books->hasMorePages())
+                <a href="{{ $books->nextPageUrl() }}" class="page-disabled">Next</a>
+            @else
+                <span class="page-disabled">Next</span>
+        </nav>
+    @endif
 @endsection
