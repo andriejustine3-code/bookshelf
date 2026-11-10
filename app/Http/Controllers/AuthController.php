@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\BookController;
+use Illuminate\Support\Facade\Auth;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -35,7 +38,7 @@ class AuthController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        return redirect()->('books.index')->with('success', 'You have just logged out.');
+        
+        return redirect()->('books.index')->with('success', 'You have been logged out');
     }
 }

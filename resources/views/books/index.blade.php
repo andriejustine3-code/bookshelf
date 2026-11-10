@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
+@auth
+    @section('button')
+        <a class="btn btn-primary" href="{{ route('books.create') }}">Add New Book</a>
+    @endsection
+@endauth
 
-@section('button')
-    <a class="btn btn-primary" href="{{ route('books.create') }}">Add New Book</a>
-@endsection
 
 @section('content')
     <section class="book-collection">
@@ -24,6 +26,7 @@
                     <h2>{{ $book->title }}</h2>
                     <p>Author: {{ $book->author }}</p>
                     <p>Published By: {{$book->publisher?->name ?? 'Unknown'}}</p>
+                    @auth
                     <ul class="book-actions">
                         <li><a href="{{ route('books.show', $book) }}" class="btn btn-primary">View Details</a></li>
                         <li><a href="{{ route('books.edit', $book) }}" class="btn btn-secondary">Edit</a></li>
@@ -34,7 +37,7 @@
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this book?')">Delete</button>
                         </form></li>
                     </ul>
-                    
+                    @endauth
                 </div>
             @endforeach
         </div>
