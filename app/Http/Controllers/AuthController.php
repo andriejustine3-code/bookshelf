@@ -23,7 +23,7 @@ class AuthController extends Controller
         //verifies the credentials
         if(!Auth::attempt($credentials))
         {
-            throw ValidationException::withMessage([
+            throw ValidationException::withMessages([
                 'email' => 'The email or password is incorrect.'
             ]);
         }
@@ -39,6 +39,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         
-        return redirect()->('books.index')->with('success', 'You have been logged out');
+        return redirect()->route('books.index')->with('success', 'You have been logged out');
     }
 }
